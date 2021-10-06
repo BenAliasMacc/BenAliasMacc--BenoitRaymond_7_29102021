@@ -1,0 +1,188 @@
+* {
+  font-family: "lato", "roboto", sans-serif;
+  font-weight: 700;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  display: flex;
+  justify-content: center;
+  max-width: 1440px;
+  margin: auto;
+}
+.wrapper {
+  width: 95%;
+}
+a {
+  text-decoration: none;
+}
+ul {
+  padding: 0;
+}
+li {
+  list-style-type: none;
+}
+h1 {
+  font-family: "DM Sans", "roboto", sans-serif;
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #d04f4f;
+}
+h2 {
+  font-size: 1.125rem;
+  font-weight: 400;
+}
+
+/*-------------------- Header --------------------*/
+/*------------------------------------------------*/
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  width: 100%;
+  height: 152px;
+}
+.logo-image {
+  width: 50px;
+  height: 46px;
+}
+
+/*---------------------- Main ---------------------*/
+/*------------------------------------------------*/
+
+/* Barre de recherche */
+.recherche {
+  margin-bottom: 25px;
+}
+
+.recherche-principale {
+  position: relative;
+  &__input {
+    width: 100%;
+    height: 69px;
+    background: url(/assets/loupe.svg) no-repeat;
+    background-position: right 1% top 50%;
+    padding-left: 1%;
+    padding-right: 50px;
+    border: none;
+    border-radius: 5px;
+    background-color: #e7e7e7;
+    font-weight: 400;
+    border: none;
+    &::-webkit-search-cancel-button {
+      display: none;
+    }
+    &::placeholder {
+      padding-left: 1%;
+      color: #c7bebe;
+    }
+  }
+}
+
+/* Filtre */
+.filtre {
+  margin-bottom: 25px;
+}
+.dropdown {
+  display: flex;
+  &__bouton {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 170px;
+    height: 69px;
+    font-family: "lato", "roboto", sans-serif;
+    font-weight: 700;
+    border: none;
+    border-radius: 5px;
+    margin-right: 20px;
+    &::after {
+      display: none;
+    }
+    & input {
+      width: 80%;
+      height: 90%;
+      border: none;
+      &::placeholder {
+        color: white;
+      }
+      &:focus-visible {
+        color: white;
+        outline: none;
+      }
+    }
+  }
+}
+#dropdownMenuButton1 {
+  background-color: #3282f7;
+  & input {
+    background-color: #3282f7;
+  }
+}
+#dropdownMenuButton2 {
+  background-color: #68d9a4;
+  & input {
+    background-color: #68d9a4;
+  }
+}
+#dropdownMenuButton3 {
+  background-color: #ed6454;
+  & input {
+    background-color: #ed6454;
+  }
+}
+
+/* Cartes */
+.cartes {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px;
+}
+.carte {
+  display: grid;
+  background-color: #e7e7e7;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 178px 62px 156px;
+  &__image {
+    grid-column: span 2;
+    grid-row: 1;
+    overflow: hidden;
+  }
+  &__titre {
+    grid-column: 1;
+    grid-row: 2;
+    font-size: 1.125rem;
+    align-self: center;
+    margin-left: 5%;
+  }
+  &__duree {
+    grid-column: 2;
+    grid-row: 2;
+    font-size: 1.125rem;
+    align-self: center;
+    justify-self: flex-end;
+    margin-right: 5%;
+  }
+  &__ingredients {
+    grid-column: 1;
+    grid-row: 3;
+    font-size: 0.75rem;
+    margin-left: 5%;
+    & span {
+      font-weight: 400;
+    }
+  }
+  &__recette {
+    grid-column: 2;
+    grid-row: 3;
+    font-size: 0.75rem;
+    margin-right: 5%;
+    &--police {
+      font-family: "roboto", "lato", sans-serif;
+    }
+  }
+}
