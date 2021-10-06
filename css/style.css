@@ -61,7 +61,7 @@ header {
 /*---------------------- Main ---------------------*/
 /*------------------------------------------------*/
 /* Barre de recherche */
-.recherche {
+.recherche-principal-container {
   margin-bottom: 25px;
 }
 
@@ -90,17 +90,16 @@ header {
 }
 
 /* Filtre */
-.filtre {
+.recherche-secondaires-container {
   margin-bottom: 25px;
-}
-
-.dropdown {
   display: flex;
 }
-.dropdown__bouton {
+
+.recherche-secondaires {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding-inline: 20px;
   width: 170px;
   height: 69px;
   font-family: "lato", "roboto", sans-serif;
@@ -109,40 +108,43 @@ header {
   border-radius: 5px;
   margin-right: 20px;
 }
-.dropdown__bouton::after {
+.recherche-secondaires::after {
   display: none;
 }
-.dropdown__bouton input {
+.recherche-secondaires input {
   width: 80%;
   height: 90%;
   border: none;
 }
-.dropdown__bouton input::placeholder {
+.recherche-secondaires input::-webkit-search-cancel-button {
+  display: none;
+}
+.recherche-secondaires input::placeholder {
   color: white;
 }
-.dropdown__bouton input:focus-visible {
+.recherche-secondaires input:focus-visible {
   color: white;
   outline: none;
 }
 
-#dropdownMenuButton1 {
+.recherche-par-ingredients {
   background-color: #3282f7;
 }
-#dropdownMenuButton1 input {
+.recherche-par-ingredients input {
   background-color: #3282f7;
 }
 
-#dropdownMenuButton2 {
+.recherche-par-appareil {
   background-color: #68d9a4;
 }
-#dropdownMenuButton2 input {
+.recherche-par-appareil input {
   background-color: #68d9a4;
 }
 
-#dropdownMenuButton3 {
+.recherche-par-ustensiles {
   background-color: #ed6454;
 }
-#dropdownMenuButton3 input {
+.recherche-par-ustensiles input {
   background-color: #ed6454;
 }
 
@@ -163,6 +165,10 @@ header {
   grid-column: span 2;
   grid-row: 1;
   overflow: hidden;
+  object-fit: fill;
+}
+.carte__image img {
+  width: 100%;
 }
 .carte__titre {
   grid-column: 1;
