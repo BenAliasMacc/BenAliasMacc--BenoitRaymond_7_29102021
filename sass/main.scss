@@ -89,6 +89,7 @@ header {
   display: flex;
 }
 .recherche-secondaires {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -106,19 +107,24 @@ header {
   & input {
     width: 80%;
     height: 90%;
+    color: white;
+    font-size: 1.125rem;
     border: none;
     &::-webkit-search-cancel-button {
       display: none;
     }
-    &::placeholder {
-      color: white;
-    }
+    &::placeholder,
     &:focus-visible {
       color: white;
       outline: none;
     }
   }
 }
+
+.rotation-fleche {
+  transform: rotate(0.5turn);
+}
+
 .recherche-par-ingredients {
   background-color: #3282f7;
   & input {
@@ -138,6 +144,27 @@ header {
   }
 }
 
+.liste {
+  column-width: 170px;
+  padding-bottom: 1rem;
+  border-radius: 0 0 5px 5px;
+  display: none;
+  &__element {
+    padding-inline: 20px;
+    font-family: "lato", "roboto", sans-serif;
+    font-weight: 400;
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+  }
+}
+.liste-ingredients {
+  position: absolute;
+  top: 65px;
+  left: 0;
+  width: 100%;
+  background-color: #3282f7;
+  color: white;
+}
 /* Cartes */
 .cartes {
   display: grid;

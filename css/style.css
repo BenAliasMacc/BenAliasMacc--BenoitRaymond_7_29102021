@@ -96,6 +96,7 @@ header {
 }
 
 .recherche-secondaires {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -114,17 +115,20 @@ header {
 .recherche-secondaires input {
   width: 80%;
   height: 90%;
+  color: white;
+  font-size: 1.125rem;
   border: none;
 }
 .recherche-secondaires input::-webkit-search-cancel-button {
   display: none;
 }
-.recherche-secondaires input::placeholder {
-  color: white;
-}
-.recherche-secondaires input:focus-visible {
+.recherche-secondaires input::placeholder, .recherche-secondaires input:focus-visible {
   color: white;
   outline: none;
+}
+
+.rotation-fleche {
+  transform: rotate(0.5turn);
 }
 
 .recherche-par-ingredients {
@@ -146,6 +150,29 @@ header {
 }
 .recherche-par-ustensiles input {
   background-color: #ed6454;
+}
+
+.liste {
+  column-width: 170px;
+  padding-bottom: 1rem;
+  border-radius: 0 0 5px 5px;
+  display: none;
+}
+.liste__element {
+  padding-inline: 20px;
+  font-family: "lato", "roboto", sans-serif;
+  font-weight: 400;
+  font-size: 1.125rem;
+  margin-bottom: 1rem;
+}
+
+.liste-ingredients {
+  position: absolute;
+  top: 65px;
+  left: 0;
+  width: 100%;
+  background-color: #3282f7;
+  color: white;
 }
 
 /* Cartes */
