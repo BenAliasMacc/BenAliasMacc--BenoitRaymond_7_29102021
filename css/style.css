@@ -153,8 +153,13 @@ header {
 }
 
 .liste {
+  position: absolute;
+  top: 65px;
+  left: 0;
+  width: 100%;
   column-width: 170px;
   padding-bottom: 1rem;
+  color: white;
   border-radius: 0 0 5px 5px;
   display: none;
 }
@@ -167,12 +172,15 @@ header {
 }
 
 .liste-ingredients {
-  position: absolute;
-  top: 65px;
-  left: 0;
-  width: 100%;
   background-color: #3282f7;
-  color: white;
+}
+
+.liste-appareil {
+  background-color: #68d9a4;
+}
+
+.liste-ustensiles {
+  background-color: #ed6454;
 }
 
 /* Cartes */

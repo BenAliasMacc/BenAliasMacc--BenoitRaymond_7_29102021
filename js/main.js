@@ -300,6 +300,7 @@ const creationListeAppareil = (value) => {
     arrayListeAppareil.push(recipe.appliance.toLowerCase())
   );
   arrayListeAppareil = [...new Set(arrayListeAppareil)];
+  console.log(arrayListeAppareil);
   for (let i = 0; i < arrayListeAppareil.length; i++) {
     if (arrayListeAppareil[i].includes(value.toLowerCase())) {
       newArrayListeAppareil.push(arrayListeAppareil[i]);
@@ -355,7 +356,14 @@ inputUstensiles.addEventListener("input", (e) => {
 });
 
 rechercheParUstensiles.addEventListener("input", (e) => {
-  if (inputUstensiles.value.length >= 3) {
+  if (inputUstensiles.value.length >= 1 && inputUstensiles.value.length < 3) {
+    e.preventDefault();
+    ustensilesListe.innerHTML = "";
+    newArrayListeUstensiles = [];
+    ouvertureListeUstensiles();
+    creationListeUstensiles(contenuInput);
+    affichageListeUstensiles(newArrayListeUstensiles);
+  } else if (inputUstensiles.value.length >= 3) {
     e.preventDefault();
     cartes.innerHTML = "";
     arrayUstensiles = [];
@@ -364,6 +372,7 @@ rechercheParUstensiles.addEventListener("input", (e) => {
     e.preventDefault();
     cartes.innerHTML = "";
     arrayUstensiles = [];
+    fermetureListeIngredients();
   }
 });
 
@@ -372,11 +381,49 @@ rechercheParUstensiles.addEventListener("keydown", (e) => {
     e.preventDefault();
     cartes.innerHTML = "";
     inputUstensiles.value = "";
+    fermetureListeIngredients();
     affichagePlats(arrayUstensiles);
   }
 });
 
+// affichage liste Ustensiles;
+const creationListeUstensiles = (value) => {
+  recipes.filter((recipe) =>
+    recipe.ustensils.forEach((el) => {
+      arrayListeUstensiles.push(el.toLowerCase());
+    })
+  );
+  arrayListeUstensiles = [...new Set(arrayListeUstensiles)];
+  console.log(arrayListeUstensiles);
+  for (let i = 0; i < arrayListeUstensiles.length; i++) {
+    if (arrayListeUstensiles[i].includes(value.toLowerCase())) {
+      newArrayListeUstensiles.push(arrayListeUstensiles[i]);
+    }
+  }
+};
+
+const affichageListeUstensiles = (array) => {
+  for (let i = 0; i < newArrayListeUstensiles.length; i++) {
+    newArrayListeUstensiles.length = 33;
+    if (newArrayListeUstensiles[i] != undefined) {
+      ustensilesListe.innerHTML += `
+        <li class="liste__element">${array[i]}</li>
+      `;
+    }
+  }
+};
+
 // animations des filtres
+flecheUstensiles.addEventListener("click", () => {
+  if (flecheUstensiles.classList.contains("rotation-fleche")) {
+    fermetureListeUstensiles();
+  } else {
+    ouvertureListeUstensiles();
+    creationListeUstensiles(contenuInput);
+    affichageListeUstensiles(arrayListeUstensiles);
+  }
+});
+
 const ouvertureListeUstensiles = () => {
   flecheUstensiles.classList.add("rotation-fleche");
   ustensilesListe.style.display = "block";
