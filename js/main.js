@@ -18,6 +18,8 @@ const inputUstensiles = document.querySelector(
   ".recherche-par-ustensiles__input"
 );
 const ingredientsListe = document.querySelector(".liste-ingredients");
+const appareilListe = document.querySelector(".liste-appareil");
+const ustensilesListe = document.querySelector(".liste-ustensiles");
 const cartes = document.querySelector(".cartes");
 const flecheIngredients = document.querySelector(".fleche-ingredients");
 const flecheAppareil = document.querySelector(".fleche-appareil");
@@ -37,6 +39,8 @@ let arrayListeIngredients = [];
 let arrayListeAppareil = [];
 let arrayListeUstensiles = [];
 let newArrayListeIngredients = [];
+let newArrayListeAppareil = [];
+let newArrayListeUstensiles = [];
 
 // Affichage
 const affichagePlats = (array) => {
@@ -121,7 +125,8 @@ function trie() {
 
 trie();
 
-// Recherche principal
+//--------------------- Recherche principal --------------------
+//--------------------------------------------------------------
 function recherche(value) {
   for (let i = 0; i < arrayTrie.length; i++) {
     if (arrayTrie[i].toLowerCase().includes(value.toLowerCase())) {
@@ -148,8 +153,9 @@ recherchePrincipal.addEventListener("input", (e) => {
   }
 });
 
-// Recherches secondaire
-// Ingrédients
+//--------------------- Recherche principal --------------------
+//--------------------------------------------------------------
+//------------------------- Ingrédients-------------------------
 function rechercheIngredients(value) {
   for (let i = 0; i < arrayTrieIngredients.length; i++) {
     if (arrayTrieIngredients[i].toLowerCase().includes(value.toLowerCase())) {
@@ -175,7 +181,6 @@ rechercheParIngredients.addEventListener("input", (e) => {
     cartes.innerHTML = "";
     arrayIngredients = [];
     rechercheIngredients(contenuInput);
-    console.log(arrayIngredients);
   } else {
     e.preventDefault();
     cartes.innerHTML = "";
@@ -192,77 +197,6 @@ rechercheParIngredients.addEventListener("keydown", (e) => {
     inputIngredients.value = "";
     fermetureListeIngredients();
     affichagePlats(arrayIngredients);
-  }
-});
-
-// Appareil
-function rechercheAppareil(value) {
-  console.log(value);
-  for (let i = 0; i < arrayTrieAppareil.length; i++) {
-    if (arrayTrieAppareil[i].toLowerCase().includes(value.toLowerCase())) {
-      arrayAppareil.push(recipes[i]);
-    }
-  }
-}
-
-inputAppareil.addEventListener("input", (e) => {
-  contenuInput = e.target.value.toLowerCase();
-});
-
-rechercheParAppareil.addEventListener("input", (e) => {
-  if (inputAppareil.value.length >= 3) {
-    e.preventDefault();
-    cartes.innerHTML = "";
-    arrayAppareil = [];
-    rechercheAppareil(contenuInput);
-  } else {
-    e.preventDefault();
-    cartes.innerHTML = "";
-    arrayAppareil = [];
-  }
-});
-
-rechercheParAppareil.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
-    e.preventDefault();
-    cartes.innerHTML = "";
-    inputAppareil.value = "";
-    affichagePlats(arrayAppareil);
-  }
-});
-
-//Ustensiles
-function rechercheUstensiles(value) {
-  for (let i = 0; i < arrayTrieUstensiles.length; i++) {
-    if (arrayTrieUstensiles[i].toLowerCase().includes(value.toLowerCase())) {
-      arrayUstensiles.push(recipes[i]);
-    }
-  }
-}
-
-inputUstensiles.addEventListener("input", (e) => {
-  contenuInput = e.target.value.toLowerCase();
-});
-
-rechercheParUstensiles.addEventListener("input", (e) => {
-  if (inputUstensiles.value.length >= 3) {
-    e.preventDefault();
-    cartes.innerHTML = "";
-    arrayUstensiles = [];
-    rechercheUstensiles(contenuInput);
-  } else {
-    e.preventDefault();
-    cartes.innerHTML = "";
-    arrayUstensiles = [];
-  }
-});
-
-rechercheParUstensiles.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
-    e.preventDefault();
-    cartes.innerHTML = "";
-    inputUstensiles.value = "";
-    affichagePlats(arrayUstensiles);
   }
 });
 
@@ -313,4 +247,144 @@ const fermetureListeIngredients = () => {
   flecheIngredients.classList.remove("rotation-fleche");
   ingredientsListe.style.display = "none";
   rechercheParIngredients.style.width = "170px";
+};
+
+//------------------------- Appareil -------------------------
+function rechercheAppareil(value) {
+  for (let i = 0; i < arrayTrieAppareil.length; i++) {
+    if (arrayTrieAppareil[i].toLowerCase().includes(value.toLowerCase())) {
+      arrayAppareil.push(recipes[i]);
+    }
+  }
+}
+
+inputAppareil.addEventListener("input", (e) => {
+  contenuInput = e.target.value.toLowerCase();
+});
+
+rechercheParAppareil.addEventListener("input", (e) => {
+  if (inputAppareil.value.length >= 1 && inputAppareil.value.length < 3) {
+    e.preventDefault();
+    appareilListe.innerHTML = "";
+    newArrayListeAppareil = [];
+    ouvertureListeAppareil();
+    creationListeAppareil(contenuInput);
+    affichageListeAppareil(newArrayListeAppareil);
+  } else if (inputAppareil.value.length >= 3) {
+    e.preventDefault();
+    cartes.innerHTML = "";
+    arrayAppareil = [];
+    rechercheAppareil(contenuInput);
+  } else {
+    e.preventDefault();
+    cartes.innerHTML = "";
+    arrayAppareil = [];
+    newArrayListeAppareil = [];
+    fermetureListeAppareil();
+  }
+});
+
+rechercheParAppareil.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && inputAppareil.value.length >= 3) {
+    e.preventDefault();
+    cartes.innerHTML = "";
+    inputAppareil.value = "";
+    fermetureListeAppareil();
+    affichagePlats(arrayAppareil);
+  }
+});
+
+// affichageliste Appareil;
+const creationListeAppareil = (value) => {
+  recipes.filter((recipe) =>
+    arrayListeAppareil.push(recipe.appliance.toLowerCase())
+  );
+  arrayListeAppareil = [...new Set(arrayListeAppareil)];
+  for (let i = 0; i < arrayListeAppareil.length; i++) {
+    if (arrayListeAppareil[i].includes(value.toLowerCase())) {
+      newArrayListeAppareil.push(arrayListeAppareil[i]);
+    }
+  }
+};
+
+const affichageListeAppareil = (array) => {
+  for (let i = 0; i < newArrayListeAppareil.length; i++) {
+    newArrayListeAppareil.length = 33;
+    if (newArrayListeAppareil[i] != undefined) {
+      appareilListe.innerHTML += `
+        <li class="liste__element">${array[i]}</li>
+      `;
+    }
+  }
+};
+
+// animations des filtres
+flecheAppareil.addEventListener("click", () => {
+  if (flecheAppareil.classList.contains("rotation-fleche")) {
+    fermetureListeAppareil();
+  } else {
+    ouvertureListeAppareil();
+    creationListeAppareil(contenuInput);
+    affichageListeAppareil(arrayListeAppareil);
+  }
+});
+
+const ouvertureListeAppareil = () => {
+  flecheAppareil.classList.add("rotation-fleche");
+  appareilListe.style.display = "block";
+  rechercheParAppareil.style.width = "50%";
+  appareilListe.innerHTML = "";
+};
+const fermetureListeAppareil = () => {
+  flecheAppareil.classList.remove("rotation-fleche");
+  appareilListe.style.display = "none";
+  rechercheParAppareil.style.width = "170px";
+};
+
+//------------------------- Ustensiles -------------------------
+function rechercheUstensiles(value) {
+  for (let i = 0; i < arrayTrieUstensiles.length; i++) {
+    if (arrayTrieUstensiles[i].toLowerCase().includes(value.toLowerCase())) {
+      arrayUstensiles.push(recipes[i]);
+    }
+  }
+}
+
+inputUstensiles.addEventListener("input", (e) => {
+  contenuInput = e.target.value.toLowerCase();
+});
+
+rechercheParUstensiles.addEventListener("input", (e) => {
+  if (inputUstensiles.value.length >= 3) {
+    e.preventDefault();
+    cartes.innerHTML = "";
+    arrayUstensiles = [];
+    rechercheUstensiles(contenuInput);
+  } else {
+    e.preventDefault();
+    cartes.innerHTML = "";
+    arrayUstensiles = [];
+  }
+});
+
+rechercheParUstensiles.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    cartes.innerHTML = "";
+    inputUstensiles.value = "";
+    affichagePlats(arrayUstensiles);
+  }
+});
+
+// animations des filtres
+const ouvertureListeUstensiles = () => {
+  flecheUstensiles.classList.add("rotation-fleche");
+  ustensilesListe.style.display = "block";
+  rechercheParUstensiles.style.width = "50%";
+  ustensilesListe.innerHTML = "";
+};
+const fermetureListeUstensiles = () => {
+  flecheUstensiles.classList.remove("rotation-fleche");
+  ustensilesListe.style.display = "none";
+  rechercheParUstensiles.style.width = "170px";
 };
