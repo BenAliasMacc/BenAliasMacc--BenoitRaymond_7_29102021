@@ -71,10 +71,8 @@ header {
 .recherche-principale__input {
   width: 100%;
   height: 69px;
-  background: url(/assets/loupe.svg) no-repeat;
-  background-position: right 1% top 50%;
   padding-left: 1%;
-  padding-right: 50px;
+  padding-right: 60px;
   border: none;
   border-radius: 5px;
   background-color: #e7e7e7;
@@ -88,11 +86,47 @@ header {
   padding-left: 1%;
   color: #c7bebe;
 }
+.recherche-principale__image {
+  position: absolute;
+  right: 1%;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
 
 /* Filtre */
-.recherche-secondaires-container {
+.filtre {
   margin-bottom: 25px;
+}
+.filtre__container {
   display: flex;
+}
+
+.element-select {
+  display: flex;
+  margin-bottom: 20px;
+}
+.element-select__ingredients {
+  background-color: #3282f7;
+}
+.element-select__appareil {
+  background-color: #68d9a4;
+}
+.element-select__ustensiles {
+  background-color: #ed6454;
+}
+.element-select bouton {
+  display: flex;
+  align-items: center;
+  height: 37px;
+  color: white;
+  border-radius: 5px;
+  padding-inline: 20px;
+  margin-right: 10px;
+}
+.element-select bouton img {
+  margin-left: 15px;
+  cursor: pointer;
 }
 
 .recherche-secondaires {
@@ -125,6 +159,9 @@ header {
 .recherche-secondaires input::placeholder, .recherche-secondaires input:focus-visible {
   color: white;
   outline: none;
+}
+.recherche-secondaires img {
+  cursor: pointer;
 }
 
 .rotation-fleche {
@@ -164,23 +201,36 @@ header {
   display: none;
 }
 .liste__element {
-  padding-inline: 20px;
   font-family: "lato", "roboto", sans-serif;
   font-weight: 400;
   font-size: 1.125rem;
+  padding-inline: 20px;
   margin-bottom: 1rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: pointer;
 }
 
 .liste-ingredients {
   background-color: #3282f7;
 }
+.liste-ingredients li:hover {
+  background-color: #0966ed;
+}
 
 .liste-appareil {
   background-color: #68d9a4;
 }
+.liste-appareil li:hover {
+  background-color: #3fcf8b;
+}
 
 .liste-ustensiles {
   background-color: #ed6454;
+}
+.liste-ustensiles li:hover {
+  background-color: #e83a26;
 }
 
 /* Cartes */
@@ -194,7 +244,8 @@ header {
   display: grid;
   background-color: #e7e7e7;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 178px 62px 156px;
+  grid-template-rows: 178px 62px 140px;
+  padding-bottom: 20px;
 }
 .carte__image {
   grid-column: span 2;
@@ -234,6 +285,7 @@ header {
   grid-row: 3;
   font-size: 0.75rem;
   margin-right: 5%;
+  overflow: hidden;
 }
 .carte__recette--police {
   font-family: "roboto", "lato", sans-serif;

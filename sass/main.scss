@@ -1,3 +1,5 @@
+@import "./utils/variables";
+
 * {
   font-family: "lato", "roboto", sans-serif;
   font-weight: 700;
@@ -64,10 +66,8 @@ header {
   &__input {
     width: 100%;
     height: 69px;
-    background: url(/assets/loupe.svg) no-repeat;
-    background-position: right 1% top 50%;
     padding-left: 1%;
-    padding-right: 50px;
+    padding-right: 60px;
     border: none;
     border-radius: 5px;
     background-color: #e7e7e7;
@@ -81,13 +81,50 @@ header {
       color: #c7bebe;
     }
   }
+  &__image {
+    position: absolute;
+    right: 1%;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
 }
 
 /* Filtre */
-.recherche-secondaires-container {
+.filtre {
   margin-bottom: 25px;
-  display: flex;
+  &__container {
+    display: flex;
+  }
 }
+
+.element-select {
+  display: flex;
+  margin-bottom: 20px;
+  &__ingredients {
+    background-color: $ingredients-couleur;
+  }
+  &__appareil {
+    background-color: $appareil-couleur;
+  }
+  &__ustensiles {
+    background-color: $ustensiles-couleur;
+  }
+  & bouton {
+    display: flex;
+    align-items: center;
+    height: 37px;
+    color: white;
+    border-radius: 5px;
+    padding-inline: 20px;
+    margin-right: 10px;
+    & img {
+      margin-left: 15px;
+      cursor: pointer;
+    }
+  }
+}
+
 .recherche-secondaires {
   position: relative;
   display: flex;
@@ -119,6 +156,9 @@ header {
       outline: none;
     }
   }
+  & img {
+    cursor: pointer;
+  }
 }
 
 .rotation-fleche {
@@ -126,21 +166,21 @@ header {
 }
 
 .recherche-par-ingredients {
-  background-color: #3282f7;
+  background-color: $ingredients-couleur;
   & input {
-    background-color: #3282f7;
+    background-color: $ingredients-couleur;
   }
 }
 .recherche-par-appareil {
-  background-color: #68d9a4;
+  background-color: $appareil-couleur;
   & input {
-    background-color: #68d9a4;
+    background-color: $appareil-couleur;
   }
 }
 .recherche-par-ustensiles {
-  background-color: #ed6454;
+  background-color: $ustensiles-couleur;
   & input {
-    background-color: #ed6454;
+    background-color: $ustensiles-couleur;
   }
 }
 
@@ -155,21 +195,40 @@ header {
   border-radius: 0 0 5px 5px;
   display: none;
   &__element {
-    padding-inline: 20px;
     font-family: "lato", "roboto", sans-serif;
     font-weight: 400;
     font-size: 1.125rem;
+    padding-inline: 20px;
     margin-bottom: 1rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    cursor: pointer;
   }
 }
 .liste-ingredients {
-  background-color: #3282f7;
+  background-color: $ingredients-couleur;
+  & li {
+    &:hover {
+      background-color: darken($color: $ingredients-couleur, $amount: 10%);
+    }
+  }
 }
 .liste-appareil {
-  background-color: #68d9a4;
+  background-color: $appareil-couleur;
+  & li {
+    &:hover {
+      background-color: darken($color: $appareil-couleur, $amount: 10%);
+    }
+  }
 }
 .liste-ustensiles {
-  background-color: #ed6454;
+  background-color: $ustensiles-couleur;
+  & li {
+    &:hover {
+      background-color: darken($color: $ustensiles-couleur, $amount: 10%);
+    }
+  }
 }
 /* Cartes */
 .cartes {
@@ -181,7 +240,8 @@ header {
   display: grid;
   background-color: #e7e7e7;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 178px 62px 156px;
+  grid-template-rows: 178px 62px 140px;
+  padding-bottom: 20px;
   &__image {
     grid-column: span 2;
     grid-row: 1;
@@ -220,6 +280,7 @@ header {
     grid-row: 3;
     font-size: 0.75rem;
     margin-right: 5%;
+    overflow: hidden;
     &--police {
       font-family: "roboto", "lato", sans-serif;
     }

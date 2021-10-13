@@ -40,51 +40,60 @@
               placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette"
               aria-label="Recherche dans le contenu du site"
             />
+            <img
+              class="recherche-principale__image"
+              src="./assets/loupe.svg"
+              alt="loupe cliquable pour lancer la recherche"
+            />
           </div>
         </section>
         <!-- Section 2 : Recherches secondaires -->
-        <section class="recherche-secondaires-container">
-          <div class="recherche-secondaires recherche-par-ingredients">
-            <input
-              type="search"
-              placeholder="Ingrédients"
-              class="recherche-par-ingredients__input"
-            />
-            <img
-              src="./assets/arrow.svg"
-              class="fleche-ingredients"
-              alt="fleche"
-              ;
-            />
-            <ul class="liste-ingredients liste"></ul>
-          </div>
+        <section class="filtre">
+          <div class="element-select"></div>
 
-          <div class="recherche-secondaires recherche-par-appareil">
-            <input
-              type="search"
-              placeholder="Appareil"
-              class="recherche-par-appareil__input"
-            />
-            <img
-              src="./assets/arrow.svg"
-              class="fleche-appareil"
-              alt="fleche"
-            />
-            <ul class="liste-appareil liste"></ul>
-          </div>
+          <div class="filtre__container">
+            <div class="recherche-secondaires recherche-par-ingredients">
+              <input
+                type="search"
+                placeholder="Ingrédients"
+                class="recherche-par-ingredients__input"
+              />
+              <img
+                src="./assets/arrow.svg"
+                class="fleche-ingredients"
+                alt="fleche"
+                ;
+              />
+              <ul class="liste-ingredients liste"></ul>
+            </div>
 
-          <div class="recherche-secondaires recherche-par-ustensiles">
-            <input
-              type="search"
-              placeholder="Ustensiles"
-              class="recherche-par-ustensiles__input"
-            />
-            <img
-              src="./assets/arrow.svg"
-              class="fleche-ustensiles"
-              alt="fleche"
-            />
-            <ul class="liste-ustensiles liste"></ul>
+            <div class="recherche-secondaires recherche-par-appareil">
+              <input
+                type="search"
+                placeholder="Appareil"
+                class="recherche-par-appareil__input"
+              />
+              <img
+                src="./assets/arrow.svg"
+                class="fleche-appareil"
+                alt="fleche"
+              />
+              <ul class="liste-appareil liste"></ul>
+            </div>
+
+            <div class="recherche-secondaires recherche-par-ustensiles">
+              <input
+                type="search"
+                placeholder="Ustensiles"
+                class="recherche-par-ustensiles__input"
+              />
+              <img
+                src="./assets/arrow.svg"
+                class="fleche-ustensiles"
+                alt="fleche"
+              />
+              <ul class="liste-ustensiles liste"></ul>
+            </div>
           </div>
         </section>
 

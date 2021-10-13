@@ -3,6 +3,7 @@ console.log(recipes);
 // DOM
 const recherchePrincipal = document.querySelector(".recherche-principale");
 const inputPrincipal = document.querySelector(".recherche-principale__input");
+const loupe = document.querySelector(".recherche-principale__image");
 const rechercheParIngredients = document.querySelector(
   ".recherche-par-ingredients"
 );
@@ -24,6 +25,7 @@ const cartes = document.querySelector(".cartes");
 const flecheIngredients = document.querySelector(".fleche-ingredients");
 const flecheAppareil = document.querySelector(".fleche-appareil");
 const flecheUstensiles = document.querySelector(".fleche-ustensiles");
+const elementSelect = document.querySelector(".element-select");
 
 // Variables globales
 let contenuInput = "";
@@ -153,9 +155,20 @@ recherchePrincipal.addEventListener("input", (e) => {
   }
 });
 
-//--------------------- Recherche principal --------------------
-//--------------------------------------------------------------
-//------------------------- Ingrédients-------------------------
+//--------------------- Recherche secondaires --------------------
+//----------------------------------------------------------------
+
+//----------------- Elements de la liste sélectionné -------------
+const fermetureElement = (close, element) => {
+  close.forEach((elt, index) => {
+    elt.addEventListener("click", () => {
+      console.log(element);
+      element[index].style.display = "none";
+    });
+  });
+};
+
+//------------------------- Ingrédients---------------------------
 function rechercheIngredients(value) {
   for (let i = 0; i < arrayTrieIngredients.length; i++) {
     if (arrayTrieIngredients[i].toLowerCase().includes(value.toLowerCase())) {
@@ -178,8 +191,12 @@ rechercheParIngredients.addEventListener("input", (e) => {
     affichageListeIngredients(newArrayListeIngredients);
   } else if (inputIngredients.value.length >= 3) {
     e.preventDefault();
+    ingredientsListe.innerHTML = "";
+    newArrayListeIngredients = [];
     cartes.innerHTML = "";
     arrayIngredients = [];
+    creationListeIngredients(contenuInput);
+    affichageListeIngredients(newArrayListeIngredients);
     rechercheIngredients(contenuInput);
   } else {
     e.preventDefault();
@@ -220,10 +237,14 @@ const affichageListeIngredients = (array) => {
     newArrayListeIngredients.length = 33;
     if (newArrayListeIngredients[i] != undefined) {
       ingredientsListe.innerHTML += `
-        <li class="liste__element">${array[i]}</li>
+        <li class="liste__element" tabindex="0">${array[i]}</li>
       `;
     }
   }
+  const elementsListe = document.querySelectorAll(".liste__element");
+  elementsListe.forEach((el) => {
+    el.addEventListener("click", (e) => creationElementIngredients(e));
+  });
 };
 
 // animations des filtres
@@ -249,6 +270,16 @@ const fermetureListeIngredients = () => {
   rechercheParIngredients.style.width = "170px";
 };
 
+// bouton select
+const creationElementIngredients = (event) => {
+  elementSelect.innerHTML += `
+    <bouton class="element-select__ingredients element-select__choix">${event.target.textContent}<img class="close-element" src="./assets/close.svg" alt="bouton fermeture"></i></bouton>
+  `;
+  const elementChoisis = document.querySelectorAll(".element-select__choix");
+  const closeElement = document.querySelectorAll(".close-element");
+  fermetureElement(closeElement, elementChoisis);
+};
+
 //------------------------- Appareil -------------------------
 function rechercheAppareil(value) {
   for (let i = 0; i < arrayTrieAppareil.length; i++) {
@@ -272,8 +303,12 @@ rechercheParAppareil.addEventListener("input", (e) => {
     affichageListeAppareil(newArrayListeAppareil);
   } else if (inputAppareil.value.length >= 3) {
     e.preventDefault();
+    appareilListe.innerHTML = "";
+    newArrayListeAppareil = [];
     cartes.innerHTML = "";
     arrayAppareil = [];
+    creationListeAppareil(contenuInput);
+    affichageListeAppareil(newArrayListeAppareil);
     rechercheAppareil(contenuInput);
   } else {
     e.preventDefault();
@@ -294,7 +329,7 @@ rechercheParAppareil.addEventListener("keydown", (e) => {
   }
 });
 
-// affichageliste Appareil;
+// affichage liste Appareil;
 const creationListeAppareil = (value) => {
   recipes.filter((recipe) =>
     arrayListeAppareil.push(recipe.appliance.toLowerCase())
@@ -313,10 +348,14 @@ const affichageListeAppareil = (array) => {
     newArrayListeAppareil.length = 33;
     if (newArrayListeAppareil[i] != undefined) {
       appareilListe.innerHTML += `
-        <li class="liste__element">${array[i]}</li>
+        <li class="liste__element" tabindex="0">${array[i]}</li>
       `;
     }
   }
+  const elementsListe = document.querySelectorAll(".liste__element");
+  elementsListe.forEach((el) => {
+    el.addEventListener("click", (e) => creationElementAppareil(e));
+  });
 };
 
 // animations des filtres
@@ -340,6 +379,15 @@ const fermetureListeAppareil = () => {
   flecheAppareil.classList.remove("rotation-fleche");
   appareilListe.style.display = "none";
   rechercheParAppareil.style.width = "170px";
+};
+// bouton select
+const creationElementAppareil = (event) => {
+  elementSelect.innerHTML += `
+    <bouton class="element-select__appareil element-select__choix">${event.target.textContent}<img class="close-element" src="./assets/close.svg" alt="bouton fermeture"></i></bouton>
+  `;
+  const elementChoisis = document.querySelectorAll(".element-select__choix");
+  const closeElement = document.querySelectorAll(".close-element");
+  fermetureElement(closeElement, elementChoisis);
 };
 
 //------------------------- Ustensiles -------------------------
@@ -365,8 +413,12 @@ rechercheParUstensiles.addEventListener("input", (e) => {
     affichageListeUstensiles(newArrayListeUstensiles);
   } else if (inputUstensiles.value.length >= 3) {
     e.preventDefault();
+    ustensilesListe.innerHTML = "";
+    newArrayListeUstensiles = [];
     cartes.innerHTML = "";
     arrayUstensiles = [];
+    creationListeUstensiles(contenuInput);
+    affichageListeUstensiles(newArrayListeUstensiles);
     rechercheUstensiles(contenuInput);
   } else {
     e.preventDefault();
@@ -394,7 +446,6 @@ const creationListeUstensiles = (value) => {
     })
   );
   arrayListeUstensiles = [...new Set(arrayListeUstensiles)];
-  console.log(arrayListeUstensiles);
   for (let i = 0; i < arrayListeUstensiles.length; i++) {
     if (arrayListeUstensiles[i].includes(value.toLowerCase())) {
       newArrayListeUstensiles.push(arrayListeUstensiles[i]);
@@ -407,10 +458,14 @@ const affichageListeUstensiles = (array) => {
     newArrayListeUstensiles.length = 33;
     if (newArrayListeUstensiles[i] != undefined) {
       ustensilesListe.innerHTML += `
-        <li class="liste__element">${array[i]}</li>
+        <li class="liste__element" tabindex="0">${array[i]}</li>
       `;
     }
   }
+  const elementsListe = document.querySelectorAll(".liste__element");
+  elementsListe.forEach((el) => {
+    el.addEventListener("click", (e) => creationElementUstensiles(e));
+  });
 };
 
 // animations des filtres
@@ -434,4 +489,14 @@ const fermetureListeUstensiles = () => {
   flecheUstensiles.classList.remove("rotation-fleche");
   ustensilesListe.style.display = "none";
   rechercheParUstensiles.style.width = "170px";
+};
+
+// bouton select
+const creationElementUstensiles = (event) => {
+  elementSelect.innerHTML += `
+    <bouton class="element-select__ustensiles element-select__choix">${event.target.textContent}<img class="close-element" src="./assets/close.svg" alt="bouton fermeture"></i></bouton>
+  `;
+  const elementChoisis = document.querySelectorAll(".element-select__choix");
+  const closeElement = document.querySelectorAll(".close-element");
+  fermetureElement(closeElement, elementChoisis);
 };
