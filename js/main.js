@@ -253,6 +253,7 @@ const affichageListeIngredients = () => {
       ingredientsListe.innerHTML = "";
       appareilListe.innerHTML = "";
       ustensilesListe.innerHTML = "";
+      inputIngredients.value = "";
       arrayRecipes = [];
       arrayListeIngredients = [];
       newArrayListeIngredients = [];
@@ -295,11 +296,16 @@ const ouvertureListeIngredients = () => {
   flecheIngredients.classList.add("rotation-fleche");
   ingredientsListe.style.display = "block";
   rechercheParIngredients.style.width = "50%";
+  if(screen.width <= 576) {
+    rechercheParIngredients.style.width = "100%";
+    rechercheParIngredients.style.marginRight = "0px";
+  }
 };
 const fermetureListeIngredients = () => {
   flecheIngredients.classList.remove("rotation-fleche");
   ingredientsListe.style.display = "none";
   rechercheParIngredients.style.width = "170px";
+  rechercheParIngredients.style.marginRight = "20px";
 };
 
 // bouton select
@@ -389,6 +395,7 @@ const affichageListeAppareil = () => {
       ingredientsListe.innerHTML = "";
       appareilListe.innerHTML = "";
       ustensilesListe.innerHTML = "";
+      inputAppareil.value = "";
       arrayRecipes = [];
       arrayListeIngredients = [];
       newArrayListeIngredients = [];
@@ -431,11 +438,16 @@ const ouvertureListeAppareil = () => {
   flecheAppareil.classList.add("rotation-fleche");
   appareilListe.style.display = "block";
   rechercheParAppareil.style.width = "50%";
+  if(screen.width <= 576) {
+    rechercheParAppareil.style.width = "100%";
+    rechercheParAppareil.style.marginRight = "0px";
+  }
 };
 const fermetureListeAppareil = () => {
   flecheAppareil.classList.remove("rotation-fleche");
   appareilListe.style.display = "none";
   rechercheParAppareil.style.width = "170px";
+  rechercheParAppareil.style.marginRight = "20px";
 };
 // bouton select
 const creationElementAppareil = (event) => {
@@ -529,6 +541,7 @@ const affichageListeUstensiles = () => {
         ingredientsListe.innerHTML = "";
         appareilListe.innerHTML = "";
         ustensilesListe.innerHTML = "";
+        inputUstensiles.value = "";
         arrayRecipes = [];
         arrayListeIngredients = [];
         newArrayListeIngredients = [];
@@ -572,11 +585,16 @@ const ouvertureListeUstensiles = () => {
   flecheUstensiles.classList.add("rotation-fleche");
   ustensilesListe.style.display = "block";
   rechercheParUstensiles.style.width = "50%";
+  if(screen.width <= 576) {
+    rechercheParUstensiles.style.width = "100%";
+    rechercheParUstensiles.style.marginRight = "0px";
+  }
 };
 const fermetureListeUstensiles = () => {
   flecheUstensiles.classList.remove("rotation-fleche");
   ustensilesListe.style.display = "none";
   rechercheParUstensiles.style.width = "170px";
+  rechercheParUstensiles.style.marginRight = "20px";
 };
 
 // bouton select
