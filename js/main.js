@@ -265,16 +265,12 @@ affichageListeIngredients();
 
 const suppressionListeIngredients = () => {
   const elementSelection = document.querySelectorAll(".element-select__choix");
-  elementSelection.forEach((element) => {
-    if (
-      newArrayListeIngredients.includes(element.textContent.toLocaleLowerCase())
-    ) {
-      const indexElement = newArrayListeIngredients.indexOf(
-        element.textContent.toLocaleLowerCase()
-      );
-      newArrayListeIngredients.splice(indexElement, 1);
+  elementSelection.forEach(element => {
+    if (newArrayListeIngredients.includes(element.textContent.toLocaleLowerCase())){
+     const indexElement = newArrayListeIngredients.indexOf(element.textContent.toLocaleLowerCase())
+     newArrayListeIngredients.splice(indexElement, 1)
     }
-  });
+  })
 };
 
 // animations des filtres
@@ -292,7 +288,7 @@ const ouvertureListeIngredients = () => {
   flecheIngredients.classList.add("rotation-fleche");
   ingredientsListe.style.display = "block";
   rechercheParIngredients.style.width = "50%";
-  if (screen.width <= 576) {
+  if(screen.width <= 576) {
     rechercheParIngredients.style.width = "100%";
     rechercheParIngredients.style.marginRight = "0px";
   }
@@ -411,16 +407,12 @@ affichageListeAppareil();
 
 const suppressionListeAppareil = () => {
   const elementSelection = document.querySelectorAll(".element-select__choix");
-  elementSelection.forEach((element) => {
-    if (
-      newArrayListeAppareil.includes(element.textContent.toLocaleLowerCase())
-    ) {
-      const indexElement = newArrayListeAppareil.indexOf(
-        element.textContent.toLocaleLowerCase()
-      );
-      newArrayListeAppareil.splice(indexElement, 1);
+  elementSelection.forEach(element => {
+    if (newArrayListeAppareil.includes(element.textContent.toLocaleLowerCase())){
+     const indexElement = newArrayListeAppareil.indexOf(element.textContent.toLocaleLowerCase())
+     newArrayListeAppareil.splice(indexElement, 1)
     }
-  });
+  })
 };
 
 // animations des filtres
@@ -438,7 +430,7 @@ const ouvertureListeAppareil = () => {
   flecheAppareil.classList.add("rotation-fleche");
   appareilListe.style.display = "block";
   rechercheParAppareil.style.width = "50%";
-  if (screen.width <= 576) {
+  if(screen.width <= 576) {
     rechercheParAppareil.style.width = "100%";
     rechercheParAppareil.style.marginRight = "0px";
   }
@@ -562,16 +554,12 @@ affichageListeUstensiles();
 
 const suppressionListeUstensiles = () => {
   const elementSelection = document.querySelectorAll(".element-select__choix");
-  elementSelection.forEach((element) => {
-    if (
-      newArrayListeUstensiles.includes(element.textContent.toLocaleLowerCase())
-    ) {
-      const indexElement = newArrayListeUstensiles.indexOf(
-        element.textContent.toLocaleLowerCase()
-      );
-      newArrayListeUstensiles.splice(indexElement, 1);
+  elementSelection.forEach(element => {
+    if (newArrayListeUstensiles.includes(element.textContent.toLocaleLowerCase())){
+     const indexElement = newArrayListeUstensiles.indexOf(element.textContent.toLocaleLowerCase())
+     newArrayListeUstensiles.splice(indexElement, 1)
     }
-  });
+  })
 };
 
 // animations des filtres
@@ -589,7 +577,7 @@ const ouvertureListeUstensiles = () => {
   flecheUstensiles.classList.add("rotation-fleche");
   ustensilesListe.style.display = "block";
   rechercheParUstensiles.style.width = "50%";
-  if (screen.width <= 576) {
+  if(screen.width <= 576) {
     rechercheParUstensiles.style.width = "100%";
     rechercheParUstensiles.style.marginRight = "0px";
   }
@@ -618,13 +606,13 @@ const fermetureElement = (close, element) => {
       const indexElement = arrayElementSelectString.indexOf(
         element[index].textContent
       );
-      if (element[index].dataset.tag.includes("ingredients")) {
+      if(element[index].dataset.tag.includes("ingredients")) {
         newArrayListeIngredients.push(element[index].textContent);
       }
-      if (element[index].dataset.tag.includes("appareil")) {
+      if(element[index].dataset.tag.includes("appareil")) {
         newArrayListeAppareil.push(element[index].textContent);
       }
-      if (element[index].dataset.tag.includes("ustensiles")) {
+      if(element[index].dataset.tag.includes("ustensiles")) {
         newArrayListeUstensiles.push(element[index].textContent);
       }
       console.log(element[index]);
